@@ -5,6 +5,10 @@ class TodoList < ApplicationRecord
     @total_items ||= todo_items.count
   end
 
+  def completed? item
+    @completed_item ||= todo_items.find(item).complete?
+  end
+
   def completed_items
     @completed_items ||= todo_items.completed.count
   end
@@ -30,7 +34,7 @@ class TodoList < ApplicationRecord
     when 0
       'dark'
     when 100
-      'info'
+      'success'
     else
       'primary'
     end
