@@ -1,7 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<div class="card-header">
-  Todo List
+<div class="card-header d-flex justify-content-between">
+  <span>
+    Todo Lists
+  </span>
+  <%= link_to 'New Todo List', new_todo_list_path, class: "btn btn-primary btn-sm" %>
 </div>
 
 <ul class="list-group">
@@ -11,5 +12,3 @@
   </li>
   <% end %>
 </ul>
-
-<%= link_to 'New Todo List', new_todo_list_path %>
