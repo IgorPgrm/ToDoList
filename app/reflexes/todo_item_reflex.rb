@@ -10,4 +10,9 @@ class TodoItemReflex < ApplicationReflex
     todo_item.update(completed: true, completed_at: Time.now)
   end
 
+  def delete_item
+    todo_item = TodoItem.find(element.dataset.id)
+    todo_item.delete
+  end
+
 end

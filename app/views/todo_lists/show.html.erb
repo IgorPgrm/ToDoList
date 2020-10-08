@@ -44,11 +44,11 @@
         <span class="text-muted">
           <em><%= todo_item.description %></em>
           <% if todo_item.completed? %>
-            <span class="pl-auto badge badge-success"><%= todo_item.completed_at.to_formatted_s(:short) %></span>
+            <span class="badge badge-success"><%= todo_item.completed_at.to_formatted_s(:short) %></span>
             <% end %>
         </span>
             <%= link_to '#', class:'btn btn-dark', data: { reflex: 'click->TodoItem#mark_incomplete', id: todo_item.id } do %>
-              <i class="fas fa-times"></i>
+              <i class="fas fa-undo-alt"></i>
             <% end %>
           </div>
         </li>
@@ -58,9 +58,14 @@
         <span>
           <%= todo_item.description %>
         </span>
-            <%= link_to '#', class:'btn btn-info', data:{ reflex: 'click->TodoItem#mark_complete', id: todo_item.id} do %>
-              <i class="fas fa-check"></i>
-            <% end %>
+            <div class="d-flex flex-row-reverse">
+              <%= link_to '#', class:'btn btn-dark', data:{ reflex: 'click->TodoItem#delete_item', id: todo_item.id} do%>
+                <i class="fa fa-trash-alt"></i>
+              <% end %>
+              <%= link_to '#', class:'btn btn-info', data:{ reflex: 'click->TodoItem#mark_complete', id: todo_item.id} do %>
+                <i class="fas fa-check"></i>
+              <% end %>
+            </div>
           </div>
         </li>
       <% end %>
