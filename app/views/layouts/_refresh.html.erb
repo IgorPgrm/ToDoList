@@ -1,0 +1,8 @@
+<%= form_for([@todo_list, @todo_item]) do |f| %>
+  <div class="input-group mb-4">
+    <%= f.text_field :description, class:"form-control", placeholder: "Добавить задачу"%>
+    <div class="input-group-append">
+      <%= f.submit "Добавить", class: "btn btn-primary input-group-btn"%>
+    </div>
+  </div>
+<% end %>

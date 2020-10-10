@@ -27,14 +27,7 @@
     <div class="progress-bar bg-info" role="progressbar" style="width: <%= @todo_list.percent_complete %>%" aria-valuenow="<%= @todo_list.percent_complete %>" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
 
-  <%= form_for([@todo_list, @todo_item]) do |f| %>
-  <div class="input-group mb-4">
-    <%= f.text_field :description, class:"form-control", placeholder: "Добавить задачу"%>
-    <div class="input-group-append">
-      <%= f.submit "Добавить", class: "btn btn-primary input-group-btn"%>
-    </div>
-  </div>
-    <% end %>
+<%= render 'layouts/refresh' %>
 
   <ul class="list-group">
     <% @todo_list.todo_items.each do |todo_item| %>
@@ -47,9 +40,14 @@
             <span class="badge badge-success"><%= todo_item.completed_at.to_formatted_s(:short) %></span>
             <% end %>
         </span>
-            <%= link_to '#', class:'btn btn-dark', data: { reflex: 'click->TodoItem#mark_incomplete', id: todo_item.id } do %>
-              <i class="fas fa-undo-alt"></i>
-            <% end %>
+            <div class="d-flex justify-content-end">
+              <%= link_to '#', class:'btn btn-dark', data:{ reflex: 'click->TodoItem#delete_item', id: todo_item.id} do%>
+                <i class="fa fa-trash-alt"></i>
+              <% end %>
+              <%= link_to '#', class:'btn btn-dark', data: { reflex: 'click->TodoItem#mark_incomplete', id: todo_item.id } do %>
+                <i class="fas fa-undo-alt"></i>
+              <% end %>
+            </div>
           </div>
         </li>
       <% else %>
@@ -58,9 +56,14 @@
         <span>
           <%= todo_item.description %>
         </span>
-            <div class="d-flex flex-row-reverse">
+            <div class="d-flex justify-content-center">
+              <%= link_to '#', class:'btn btn-dark', data:{ reflex: 'click->TodoItem#edit_item', id: todo_item.id} do%>
+                <i class="fa fa-edit"></i>
+              <% end %>
+            </div>
+            <div class="d-flex flex-row-end">
               <%= link_to '#', class:'btn btn-dark', data:{ reflex: 'click->TodoItem#delete_item', id: todo_item.id} do%>
-                <i class="fa fa-trash-alt"></i>
+                <i class="fa fa-trash-alt" style="color: #ff6b6b;"></i>
               <% end %>
               <%= link_to '#', class:'btn btn-info', data:{ reflex: 'click->TodoItem#mark_complete', id: todo_item.id} do %>
                 <i class="fas fa-check"></i>
